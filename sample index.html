@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Wawa 💌</title>
+    <title>SAMPLE ONLY 💌</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -197,7 +197,7 @@
     <div class="container">
         <!-- Passcode Entry Screen -->
         <div id="passcode-screen">
-            <h2>🔒 For Wawa's Eyes Only</h2>
+            <h2>🔒 For SAMPLE Only</h2>
             <p>Enter your 4-digit secret code to open</p>
             
             <div class="pin-inputs">
@@ -212,4 +212,60 @@
         <!-- Letter Screen -->
         <div id="letter-screen">
             <!-- Full YouTube Embed Player -->
-            <div
+            <div class="music-box">
+                <p>🎵 kanegi. - not because</p>
+                <div class="video-container">
+                    <iframe src="<iframe width="560" height="315" src="https://www.youtube.com/embed/sT-wpjhYy-0?si=8UFpAUhSIaQXsX8L&amp;controls=0&amp;start=23" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="letter-header">
+                <h1>To you</h1>
+                <div class="surprise-badge">Surprise</div>
+            </div>
+
+            <div class="letter-body">
+                RANDOM NOTE
+            </div>
+
+            <div class="signature">from me</div>
+        </div>
+    </div>
+
+    <script>
+        const CORRECT_PIN = "0916"; // Passcode set to 0916
+        const inputs = document.querySelectorAll('.pin-input');
+        const errorMsg = document.getElementById('error-msg');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                if (val && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+                checkPin();
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !input.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        function checkPin() {
+            let entered = Array.from(inputs).map(i => i.value).join('');
+            if (entered.length === 4) {
+                if (entered === CORRECT_PIN) {
+                    document.getElementById('passcode-screen').style.display = 'none';
+                    document.getElementById('letter-screen').style.display = 'block';
+                } else {
+                    errorMsg.innerText = "Incorrect passcode, try again!";
+                    inputs.forEach(i => i.value = '');
+                    inputs[0].focus();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
